@@ -20,8 +20,8 @@
                 </div>
                 <div class="col-11 list-comments">
                     <ul class="list-group">
-                        <li class="list-group-item">
-                            <div class="round" id="taskList" v-for="(task, taskList) in notes" :key="taskList">
+                        <li class="list-group-item" v-for="(task, taskList) in notes" :key="taskList">
+                            <div class="round" id="taskList">
                                 <input type="checkbox" id="checkbox" />
                                 <label for="checkbox"></label>
                                 <span>{{task.message}}</span>
@@ -38,11 +38,7 @@
 export default {
     data() {
         return {
-            notes:[
-                {
-                    message: ''
-                }
-            ],
+            notes:[],
             task: ''
         }
     },
