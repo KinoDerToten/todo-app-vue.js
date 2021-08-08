@@ -11,23 +11,19 @@
                 <div class="col-12 mt-3">
                     <div class="row">
                         <div class="col-11 enter-list">
-                            <input v-model="task" type="text" placeholder="Create a new todo...">
+                            <input v-model="newTask" type="text" placeholder="Create a new todo...">
                         </div>
                         <div class="col-1 enter-button">
-                            <button @click="addTask" type="submit"><i class="fas fa-arrow-right fa-2x arrow"></i></button>
+                            <button v-on:click="addTask" type="submit"><i class="fas fa-arrow-right fa-2x arrow"></i></button>
                         </div>
                     </div>
                 </div>
                 <div class="col-11 list-comments">
-                    <ul class="list-group">
-                        <li class="list-group-item" v-for="(task, taskList) in notes" :key="taskList">
-                            <div class="round" id="taskList">
-                                <input type="checkbox" id="checkbox" />
-                                <label for="checkbox"></label>
-                                <span>{{task.message}}</span>
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="list-group">
+                        <div class="list-group-item" v-for="(taskList, index) in tasks" :key="index">
+                            {{taskList.title}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,15 +34,16 @@
 export default {
     data() {
         return {
-            notes:[],
-            task: ''
+           newTask: '',
+           tasks: []
         }
     },
     methods: {
-        addTask() {
-            this.notes.push({
-                message: this.task
+        addTask: function() {
+            this.tasks.push({
+                title: this.newTask
             })
+            this.newTask = ''
         }
     }
 }
